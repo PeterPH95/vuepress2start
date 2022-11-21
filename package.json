@@ -2,13 +2,19 @@
   "name": "vuepress2start",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "PeterPH95 <1269894219@qq.com>",
+  "author": "Peter Pan",
   "license": "MIT",
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "vuepress-webpack": "^2.0.0-beta.53"
+    "@vuepress/plugin-pwa": "^2.0.0-beta.53",
+    "@vuepress/plugin-pwa-popup": "^2.0.0-beta.53",
+    "@vuepress/plugin-search": "^2.0.0-beta.53",
+    "vuepress": "^2.0.0-beta.53"
+  },
+  "dependencies": {
+    "vuepress-plugin-helper-live2d": "^1.0.2"
   }
 }
