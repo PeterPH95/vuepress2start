@@ -1,0 +1,14 @@
+{
+  "name": "vuepress2start",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "PeterPH95 <1269894219@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress-webpack": "^2.0.0-beta.53"
+  }
+}
