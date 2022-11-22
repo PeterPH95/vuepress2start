@@ -17,6 +17,6 @@ sidebar: auto
 ---
 ```
 
-### 评论组件 Vssue 的展示
-<Vssue :options="{ locale: 'zh' }"/>
+<!-- ### 评论组件 Vssue 的展示
+<Vssue :options="{ locale: 'zh' }"/> -->
 
