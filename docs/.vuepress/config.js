@@ -4,7 +4,7 @@ import { searchPlugin } from '@vuepress/plugin-search'
 import { pwaPlugin } from '@vuepress/plugin-pwa'
 import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 // 看板娘 下面引入失败
-// import { live2d } from "vuepress-plugin-helper-live2d";
+// const live2d = module.require("vuepress-plugin-helper-live2d")
 
 export default defineUserConfig({
   base: '/vuepress2start/',
@@ -14,8 +14,8 @@ export default defineUserConfig({
   head: [
     ['meta', { name: "author", content: "风满楼" }],
     ['meta', { name: "keywords", content: "vuepress@2.0.0练习，个人博客部署，将火揉成风，热烈而温柔" }],
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
+    ['link', { rel: 'icon', href: '/vuepress2start/favicon.ico' }],
+    ['link', { rel: 'manifest', href: '/vuepress2start/manifest.webmanifest' }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
@@ -76,6 +76,7 @@ export default defineUserConfig({
     // 更新时间戳设置
     lastUpdatedText: '最近更新',
   }),
+
   /* 插件 */
   plugins: [
     // 搜索插件
@@ -96,7 +97,7 @@ export default defineUserConfig({
     }),
     // 看板娘设置
     [ 
-      'vuepress-plugin-helper-live2d', {
+      'live2d', {
       // 是否开启控制台日志打印(default: false)
       log: false,
       live2d: {
