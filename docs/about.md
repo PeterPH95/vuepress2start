@@ -8,7 +8,7 @@ title: VuePress@2.0.0的页面练习
 ## 将进酒
 <div style="
 padding: 5px 0;
-border-radius: 10px;
+border-radius: 5%;
 ont-size: 1.2rem; 
 font-family: 仿宋; 
 text-align: center;
