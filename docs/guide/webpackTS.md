@@ -118,3 +118,11 @@ module.exports = {
   },
 ```
 
+
+### 5. 项目本地运行，修改端口号
+```js
+// package.json 文件中配置
+"scripts": {
+    "serve": "vue-cli-service serve --port 9090",
+},
+```
