@@ -25,5 +25,5 @@ export default defineUserConfig({
   }),
 
   /* 插件 */
-  plugins: pluginConf,
+  plugins: pluginConf
 })
