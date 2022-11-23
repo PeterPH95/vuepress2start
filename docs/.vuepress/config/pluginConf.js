@@ -12,6 +12,10 @@ export default [
 	pwaPlugin(),
 	pwaPopupPlugin({
 		locales: {
+			'/zh/': {
+				message: 'New content is available.',
+				buttonText: 'Refresh',
+			  },
 			'/': {
 				message: '有新东西！',
 				buttonText: '刷新',
