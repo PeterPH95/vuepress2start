@@ -15,10 +15,10 @@ actions:
 
 features:
 - title: 保持热忱
-  details: 主要涉及前端开发等相关技术栈
+  details: 涉及前端开发等相关技术栈
 - title: 热爱技术
   details: 前端学习笔记
 - title: 热爱生活
-  details: 发现生活的闪光点
+  details: 将火揉成风，热烈而温柔
 footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
