@@ -10,16 +10,20 @@ export default [
 	searchPlugin(),
 	// PWA
 	pwaPlugin({
-		skipWaiting: false,
+		serviceWorker: true,
+		updatePopup: {
+			message: "有新东西！",
+			buttonText: "刷新"
+		}
 	}),
-	pwaPopupPlugin({
-		locales: {
-			'/': {
-				message: '有新东西！',
-				buttonText: '刷新',
-			}
-		},
-	}),
+	// pwaPopupPlugin({
+	// 	locales: {
+	// 		'/': {
+	// 			message: '有新东西！',
+	// 			buttonText: '刷新',
+	// 		}
+	// 	},
+	// }),
 	// // 看板娘设置 目前不兼容vuepress2
 	// live2d({
 	// 	// 是否开启控制台日志打印(default: false)
