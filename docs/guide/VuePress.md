@@ -24,4 +24,4 @@ title: Vuepress
 > 10. 测试`skipWaiting: true`
 > 11. `deploy`试试
 > 12. 重装插件
-> 13. 修改插件版本`"@vuepress/plugin-pwa-popup": "^2.0.0-beta.53"`
+> 13. 修改`locales`

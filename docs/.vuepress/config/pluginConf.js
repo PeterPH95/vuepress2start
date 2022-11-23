@@ -10,7 +10,7 @@ export default [
 	pwaPlugin(),
 	pwaPopupPlugin({
 		locales: {
-			'/': {
+			'/vuepress2start/': {
 				message: '有新东西！',
 				buttonText: '刷新',
 			}
