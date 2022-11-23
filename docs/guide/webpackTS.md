@@ -1,6 +1,5 @@
 ---
-title: webpack
-sidebar: auto
+title: webpack+ts
 ---
 
 # webpack构建TypeScript[项目](https://blog.csdn.net/qq1195566313/article/details/122708348?spm=1001.2014.3001.5501)
@@ -119,7 +118,7 @@ module.exports = {
 ```
 
 
-### 5. 项目本地运行，修改端口号
+### 项目本地运行，修改端口号
 ```js
 // package.json 文件中配置
 "scripts": {

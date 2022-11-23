@@ -9,8 +9,8 @@ title: VuePress@2.0.0的页面练习
 <div style="
 padding: 5px 0;
 border-radius: 5%;
-ont-size: 1.2rem; 
-font-family: 仿宋; 
+font-size: 1.1rem; 
+font-family: 幼圆; 
 text-align: center;
 background-color: #282c34;
 color: #fff">

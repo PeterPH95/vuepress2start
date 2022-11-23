@@ -1,10 +1,9 @@
 ---
 title: Git学习
-sidebar: auto
 ---
 
-## git 基础指令
-> [参考](https://juejin.cn/post/6844903586120335367)
+# git 基础指令
+- [参考](https://juejin.cn/post/6844903586120335367)
 
 ### 远程`git clone`仓库
 ```js

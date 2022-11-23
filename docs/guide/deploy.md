@@ -1,7 +1,8 @@
 ---
-title: Vue-Cli项目发布流程
-sidebar: auto
+title: Vue-Cli项目部署
 ---
+
+# 项目部署
 
 ## 本地项目发布到`Github`
 - 1. 新建远程仓库[new](https://github.com/new)

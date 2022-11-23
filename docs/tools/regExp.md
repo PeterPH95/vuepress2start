@@ -1,8 +1,8 @@
 ---
 title: 正则学习
-sidebar: auto
 ---
 
+# 正则表达式
 
 ## 一些符号代表的含义 [在线](https://regex101.com/)
 - ^： 以 ... 开头

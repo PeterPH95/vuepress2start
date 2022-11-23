@@ -1,6 +1,5 @@
 ---
 title: JavaScript
-sidebar: auto
 ---
 
 # JavaScript

@@ -1,6 +1,5 @@
 ---
 title: 数据库基础操作
-sidebar: auto
 ---
 
 # 数据库学习笔记

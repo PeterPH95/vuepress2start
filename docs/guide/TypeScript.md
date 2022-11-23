@@ -1,6 +1,5 @@
 ---
 title: TypeScript
-sidebar: auto
 ---
 
 # TypeScript [学习笔记](https://www.tslang.cn/docs/handbook/basic-types.html)
