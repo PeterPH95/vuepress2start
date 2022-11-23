@@ -1,5 +1,5 @@
 ---
-title: Git学习
+title: Git
 ---
 
 # git 基础指令

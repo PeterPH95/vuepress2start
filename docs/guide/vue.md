@@ -1,6 +1,5 @@
 ---
 title: Vue2项目笔记
-sidebar: auto
 ---
 
 # Vue2 项目遇到的问题
