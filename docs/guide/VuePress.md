@@ -21,3 +21,4 @@ title: Vuepress
 > 百折不挠 ψ(｀∇´)ψ
 > 小意思
 > 测试`pwa-popup`
+> 10. 测试`skipWaiting: true`

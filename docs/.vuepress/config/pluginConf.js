@@ -9,7 +9,9 @@ export default [
 	// 搜索插件
 	searchPlugin(),
 	// PWA
-	pwaPlugin(),
+	pwaPlugin({
+		skipWaiting: true,
+	}),
 	// pwaPopupPlugin({
 	// 	locales: {
 	// 		'/': {
