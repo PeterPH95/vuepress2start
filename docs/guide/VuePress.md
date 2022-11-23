@@ -25,3 +25,5 @@ title: Vuepress
 > 11. `deploy`试试
 > 12. 重装插件
 > 13. 修改`locales`
+> 14. 重装了所有依赖
+> [issue](https://github.com/vuepress/vuepress-next/issues/903)GG

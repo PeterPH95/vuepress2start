@@ -5,12 +5,18 @@ import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 
 export default [
 	// 搜索插件
-	searchPlugin(),
+	searchPlugin({
+		locales: {
+			'/': {
+			  placeholder: '搜索',
+			}
+		},
+	}),
 	// PWA
-	pwaPlugin(),
+	pwaPlugin({ skipWaiting: true }),
 	pwaPopupPlugin({
 		locales: {
-			'/vuepress2start/': {
+			'/': {
 				message: '有新东西！',
 				buttonText: '刷新',
 			}
