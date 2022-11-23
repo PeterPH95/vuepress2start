@@ -3,7 +3,7 @@ import { searchPlugin } from '@vuepress/plugin-search'
 import { pwaPlugin } from '@vuepress/plugin-pwa'
 import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 // 看板娘 下面引入失败
-import live2d from "vuepress-plugin-helper-live2d"
+// import live2d from "vuepress-plugin-helper-live2d"
 
 export default [
 	// 搜索插件
@@ -11,9 +11,7 @@ export default [
 		// 配置项
 	}),
 	// PWA
-	pwaPlugin({
-		// 配置项
-	}),
+	pwaPlugin(),
 	pwaPopupPlugin({
 		locales: {
 			'/': {

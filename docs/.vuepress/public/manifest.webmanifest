@@ -2,6 +2,10 @@
   "name": "山雨欲来风满楼",
   "short_name": "风满楼",
   "description": "Vue-powered Static Site Generator",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "start_url": "index.html",
   "icons": [
     {
       "src": "images/icons/android-chrome-192x192.png",
@@ -13,9 +17,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "theme_color": "#2196f3",
-  "background_color": "#2196f3",
-  "display": "standalone",
-  "start_url": "/index.html"
+  ]
 }
