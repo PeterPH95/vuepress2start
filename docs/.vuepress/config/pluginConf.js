@@ -7,11 +7,11 @@ import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 
 export default [
 	// 搜索插件
-	searchPlugin({
-		// 配置项
-	}),
+	searchPlugin(),
 	// PWA
-	pwaPlugin(),
+	pwaPlugin({
+		skipWaiting: false,
+	}),
 	pwaPopupPlugin({
 		locales: {
 			'/': {
