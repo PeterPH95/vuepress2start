@@ -22,3 +22,5 @@ title: Vuepress
 > 小意思
 > 测试`pwa-popup`
 > 10. 测试`skipWaiting: true`
+> 11. `deploy`试试
+> 12. 重装插件
