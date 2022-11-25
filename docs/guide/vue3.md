@@ -46,3 +46,43 @@ watch(person, (newValue,oldValue)=>{
 })// 有效
 ```
 
+### `shallowReactive`浅响应式的坑
+
+- ❗虽然下面的`salary`属性不是响应式的，但是数据可以被修改，只是数据不是响应式的，修改第一层的`name`会间接改变`salary`
+- ![图示](./assets/shallowReactive.gif)
+
+```vue
+<template>
+  <p>{{ person }}</p>
+  <p>姓名：{{ name }}</p>
+  <p>年龄：{{ age }}</p>
+  <p>薪资： {{ job.j1.salary }} K</p>
+  <button @click="name += '!'">修改姓名</button>
+  <button @click="age++">修改年龄</button>
+  <button @click="job.j1.salary++">修改薪资</button>
+</template>
+
+<script>
+import { reactive, ref, toRefs, shallowReactive} from 'vue'
+export default {
+  name: 'App',
+  setup() {
+    let person = shallowReactive({
+      name: 'Peter',
+      age: 22,
+      job: {
+        j1: {
+          salary: 22
+        }
+      }
+    })
+
+    return {
+      person,
+      ...toRefs(person)
+    }
+  }
+}
+</script>
+```
+
