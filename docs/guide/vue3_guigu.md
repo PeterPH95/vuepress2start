@@ -89,7 +89,8 @@ vite官网：https://vitejs.cn
   - 真正的按需编译，不再等待整个应用编译完成。
 - 传统构建 与` vite`构建对比图
 
-<img src="./assets/bundler.png" style="width:50%;" /><img src="./assets/esm.png" style="width:50%;" />
+[bundler](assets/bundler.png)
+[esm](assets/esm.png)
 
 ```bash
 ## 创建工程
