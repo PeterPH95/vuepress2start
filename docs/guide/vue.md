@@ -5,7 +5,18 @@ title: Vue2项目笔记
 # Vue2 项目遇到的问题
 
 ## @click.native.prevent
-> 给vue组件绑定事件时候，必须加上native ，不然不会生效（监听根元素的原生事件，使用 .native 修饰符）(element-ui(el-button)组件中碰到)
+- 给vue的组件绑定事件时候，若不加上`native`关键字 ，会被`vue`判断为自定义事件（`code1`）,
+
+- 如果监听根元素的原生事件，需使用 .native 修饰符(element-ui(el-button)组件中碰到)
+
+```vue
+<template>
+  <!--1. 子组件点击鼠标，不会触发show函数 -->
+  <Student @click="show"/>
+  <!-- 子组件点击鼠标可以触发show函数 -->
+  <Student @click.native="show"/>
+</template>
+```
 
 
 ### `Vue2` 中设置别名 `@` 的方式

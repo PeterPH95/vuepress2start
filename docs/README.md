@@ -6,10 +6,10 @@ heroText: 风满楼
 tagline:  持续学习，持续进步
 
 actions:
-  - text: 快速上手
-    link: /guide/VuePress.md
+  - text: 关于我
+    link: about.md
     type: primary
-  - text: 项目简介
+  - text: 使用导航
     link: /guide/
     type: secondary
 

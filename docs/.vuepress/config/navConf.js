@@ -1,8 +1,10 @@
 // 导航栏配置
 export default [
   { text: 'Home', link: '/' },
-  { text: 'About', link: '/about' },
-  { text: 'Algorithm', link: '/algorithm/' },
+  { text: 'Algorithm', children: [
+    {text: 'algorithm', link: '/algorithm/algorithm.md'},
+    {text: 'JS手写', link: '/algorithm/JS.md'}
+  ] },
   { text: 'Guide', children: [
       { text: '基础', children: [
           { text: 'JavaScript', link: '/guide/JavaScript.md' },
@@ -10,6 +12,7 @@ export default [
           { text: 'TypeScript', link: '/guide/TypeScript.md' },
           { text: 'Vue2', link: '/guide/vue.md' },
           { text: 'Vue3', link: '/guide/vue3.md' },
+          { text: 'Vue3视频笔记', link: '/guide/vue3_guigu.md' },
         ]
       },
       { text: '扩展', children: [
