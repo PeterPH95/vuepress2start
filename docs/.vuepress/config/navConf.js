@@ -1,11 +1,12 @@
 // 导航栏配置
 export default [
-  { text: 'Home', link: '/' },
-  { text: 'Algorithm', children: [
-    {text: 'algorithm', link: '/algorithm/algorithm.md'},
+  { text: '首页', link: '/' },
+  { text: '导航', link: '/Guide.md' },
+  { text: '算法', children: [
+    {text: '算法', link: '/algorithm/algorithm.md'},
     {text: 'JS手写', link: '/algorithm/JS.md'}
   ] },
-  { text: 'Guide', children: [
+  { text: '前端', children: [
       { text: '基础', children: [
           { text: 'JavaScript', link: '/guide/JavaScript.md' },
           { text: 'CSS', link: '/guide/css.md' },
@@ -23,7 +24,7 @@ export default [
       }
     ]
   },
-  { text: 'Tool', children: [
+  { text: '基础', children: [
       { text: '必备', children: [
           { text: 'Git', link: '/tools/git.md' },
           { text: 'Npm', link: '/tools/npm.md' },
@@ -36,6 +37,6 @@ export default [
       }
     ],
   },
-  { text: 'More🎉', link: '/news/' },
+  { text: '更多🎉', link: '/news/' },
   { text: 'Github', link: 'https://github.com/PeterPH95/vuepress2start' },
 ]

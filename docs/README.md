@@ -7,10 +7,10 @@ tagline:  持续学习，持续进步
 
 actions:
   - text: 关于我
-    link: about.md
+    link: About.md
     type: primary
   - text: 使用导航
-    link: /guide/
+    link: Guide.md
     type: secondary
 
 features:

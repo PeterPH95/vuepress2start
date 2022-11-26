@@ -3,9 +3,8 @@ title: VuePress@2.0.0的页面练习
 ---
 
 ## 关于我
-> 前端小菜鸟啦， 进阶修炼中...
+> 前端菜鸟，进阶修炼中...
 
-## 将进酒
 <div style="
 padding: 5px 0;
 border-radius: 5%;

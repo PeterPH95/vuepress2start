@@ -63,18 +63,14 @@ watch(person, (newValue,oldValue)=>{
 </template>
 
 <script>
-import { reactive, ref, toRefs, shallowReactive} from 'vue'
+import { toRefs, shallowReactive} from 'vue'
 export default {
   name: 'App',
   setup() {
     let person = shallowReactive({
       name: 'Peter',
       age: 22,
-      job: {
-        j1: {
-          salary: 22
-        }
-      }
+      job: { j1: { salary: 22 } }
     })
 
     return {
