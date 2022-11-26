@@ -37,7 +37,7 @@ npm init -y
 
 ## 2. 安装依赖
 
-```
+``` bash
 安装webpack   
 npm install webpack -D
 

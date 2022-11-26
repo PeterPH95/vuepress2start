@@ -8,7 +8,7 @@ title: TypeScript
 
 - TypeScript 是 javascript 的超集
 
-```typescript
+``` bash
 // 全局安装ts
 npm install typescript -g
 // 执行 .ts 文件指令 

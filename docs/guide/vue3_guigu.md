@@ -64,7 +64,7 @@ title: Vue3尚硅谷笔记
 
 [官方文档](https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create)
 
-```bash
+``` bash
 ## 查看@vue/cli版本，确保@vue/cli版本在4.5.0以上
 vue --version
 ## 安装或者升级你的@vue/cli
@@ -92,7 +92,7 @@ npm run serve
 [bundler](assets/bundler.png)
 [esm](assets/esm.png)
 
-```bash
+``` bash
 ## 创建工程
 npm init vite-app <project-name>
 ## 进入工程目录
