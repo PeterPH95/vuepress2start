@@ -27,3 +27,4 @@ title: Vuepress
 > 13. 修改`locales`
 > 14. 重装了所有依赖
 > [issue](https://github.com/vuepress/vuepress-next/issues/903)GG
+> 15. 自动部署报错了net/http: request canceled (Client.Timeout exceeded while awaiting headers)
