@@ -2,7 +2,7 @@
 title: 一些指令
 ---
 
-# npm 和 yarn 一些操作指令
+# [npm](https://docs.npmjs.com/cli/v9/commands/npm-install) 和 [yarn](https://www.wenjiangs.com/doc/yarn-cli-add) 一些操作指令
 
 ## `npm` 和 `yarn` 指令对应
 ``` bash

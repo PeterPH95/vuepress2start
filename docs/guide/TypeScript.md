@@ -19,6 +19,9 @@ npm install @types/node -D
 npm install ts-node -g
 // 直接运行 .ts 文件
 ts-node hello.ts
+
+// 初始化TypeScript项目并创建一个 tsconfig.json文件
+tsc --init
 ```
 
 ## 其它
