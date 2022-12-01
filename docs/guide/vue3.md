@@ -82,3 +82,18 @@ export default {
 </script>
 ```
 
+## `Vue3`项目笔记
+
+### `Vue3`加`ts`出现 --找不到模块
+- 看图：
+[模块导入错误](./assets/vue3_@.png)
+- 问题一：`ts`只支持导出导入模块，但是`vue`不是模块(我们需要申明一下`vue`是个模块，让你的`ts`可以导入)
+  - 解决方式：在`src`目录下新建`env.d.ts`文件，声明`.vue`文件是模块
+  ```ts
+  declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+  }
+  ``` 
+- 问题二：`@`别名的方式模块无法识别

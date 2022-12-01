@@ -11,7 +11,7 @@ title: TypeScript
 ``` bash
 // 全局安装ts
 npm install typescript -g
-// 执行 .ts 文件指令 
+// typescript compiler(tsc)执行 .ts 文件指令 
 tsc hello.ts // 编译生成 hello.js
 
 // 安装可直接执行 .ts 文件的库
@@ -19,6 +19,8 @@ npm install @types/node -D
 npm install ts-node -g
 // 直接运行 .ts 文件
 ts-node hello.ts
+// 自动编译 -w: watch
+tsc -w
 
 // 初始化TypeScript项目并创建一个 tsconfig.json文件
 tsc --init
@@ -31,6 +33,13 @@ tsc --init
 - [三斜线指令](https://blog.csdn.net/qq1195566313/article/details/122554824?spm=1001.2014.3001.5501)`///<reference path="./index2.ts" />`
 - [声明文件declare](https://blog.csdn.net/qq1195566313/article/details/122558474?spm=1001.2014.3001.5501)
 - [Mixins混入](https://blog.csdn.net/qq1195566313/article/details/122602896?spm=1001.2014.3001.5501)
+
+
+## 使用核心
+::: warning
+1. 定义任何数据的时候请标明类型
+2. 调用任何数据时需检查类型
+:::
 
 ## 类型
 

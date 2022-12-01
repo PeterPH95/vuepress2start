@@ -144,3 +144,51 @@ export const getAddr = (params) => {
 
 
 ## 事件总线和`vuex`的区别？
+
+
+## 父组件给子组件传值，父组件更新数据，子组件数据不更新
+- 原因：子组件只会在第一次初始化时拿到值并赋值，(注意：直接对象赋值则不受影响，若是非对象属性，则会发生上述情况)，当父组件传给子组件的值改变时，并没有重新给子组件中的变量赋值。
+- 解决方法一：使用`computed`或者`watch`来检测传入的`props`的改变
+- 解决方法二：当父组件传给子组件的值改变时，重新渲染子组件：给子组件动态绑定`key`值，当前时间戳为新的`key`传给子组件，子组件的因为`key`的改变被重新渲染(`key`直接绑定子组件标签那一行)
+```vue
+<template>
+  <div id="app">
+    <button @click="addAge">点我age++</button>
+    <button @click="addCar">点我+car</button>
+    <button @click="addNum">点我n++</button>
+    <HelloWorld :msg="message" :num="myNum" :key="key" />
+  </div>
+</template>
+
+<script>
+import HelloWorld from "./components/HelloWorld.vue";
+
+export default {
+  name: "App",
+  components: {
+    HelloWorld,
+  },
+  data() {
+    return {
+      message: { name: "peter", age: 25, },
+      myNum: 1,
+      key: 10086,
+    };
+  },
+  methods: {
+    addAge(){
+      this.key = Date.now()
+      this.message.age += 1
+    },
+    addCar() {
+      this.key = Date.now()
+      this.message["car"] = "奔驰";
+    },
+    addNum(){
+      this.key = Date.now()
+      this.myNum += 1
+    }
+  },
+};
+</script>
+```
