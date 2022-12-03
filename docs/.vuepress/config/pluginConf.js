@@ -12,8 +12,8 @@ export default [
 			}
 		},
 	}),
-	// PWA
-	pwaPlugin({ skipWaiting: true }),
+	// PWA 莫名其妙好了？？
+	pwaPlugin({ skipWaiting: false }),
 	pwaPopupPlugin({
 		locales: {
 			'/': {

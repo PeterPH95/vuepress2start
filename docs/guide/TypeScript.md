@@ -126,7 +126,6 @@ str = unusable // 报错
 ```
 
 
-
 ### Symbol
 
 - 构造函数只接收 **string** 和 **number**类型的参数
@@ -350,6 +349,20 @@ console.log(a); // 0
 let nameOfA = Enum[a]; // a类似于索引，返回 key 的 string 类型
 console.log(nameOfA); // fall
 ```
+
+
+### type 关键字声明类型
+- 在项目问题中自定义类型
+```ts
+type Mode = {
+  development: object,
+  test: object,
+  prod: object
+}
+// 将上述的'development','test','prod'转为key类型
+let env: keyof Mode
+```
+
 
 ### never
 
@@ -864,3 +877,41 @@ promise().then(res=>{
 
 - 装饰器使用类似注解的方式，获取类原型，并且给类增加属性或者方法，正如其名**"装饰器"**
 - 装饰器是一种特殊类型的声明，它能够被附加到[类声明](https://www.tslang.cn/docs/handbook/decorators.html#class-decorators)，[方法](https://www.tslang.cn/docs/handbook/decorators.html#method-decorators)， [访问符](https://www.tslang.cn/docs/handbook/decorators.html#accessor-decorators)，[属性](https://www.tslang.cn/docs/handbook/decorators.html#property-decorators)或[参数](https://www.tslang.cn/docs/handbook/decorators.html#parameter-decorators)上。
+  
+
+## `ts`项目遇到的问题
+
+### `string`不能作为对象的`key`
+- [参考](https://blog.csdn.net/m0_47670683/article/details/124025972)
+```ts
+const env = import.meta.env.MODE || 'prod'
+const EnvConfig: Mode = {
+  development: {
+    baseApi: '/api',
+    mockApi: ''
+  },
+  test: {
+    baseApi: '/api',
+    mockApi: ''
+  },
+  prod: {
+    baseApi: '/api',
+    mockApi: ''
+  },
+}
+
+export default {
+    // 报错 `string`不能作为对象的`key`
+  ...EnvConfig[env]
+}
+
+// 解决方式
+// 1.定义新类型 Mode
+type Mode = {
+  development: object,
+  test: object,
+  prod: object
+}
+// 2.修改 env 的类型
+const env: keyof Mode = (import.meta.env.MODE as keyof Mode) || 'prod'
+```

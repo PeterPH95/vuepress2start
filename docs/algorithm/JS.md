@@ -8,7 +8,7 @@ title: 'JS手写'
 
 ```javascript
 function getType(target) {
-	return Object.prototype.toString.call(target).slice(8:-1);
+	return Object.prototype.toString.call(target).slice(8,-1);
 }
 ```
 
