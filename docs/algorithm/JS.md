@@ -242,3 +242,57 @@ soo.sayHi()
 soo.sayHello()
 ```
 
+## 8. 😺手写防抖?
+- [参考](https://lodash.com/docs#debounce)
+```javascript
+function debounce(fn, delay, ..args) {
+  let timer;
+  return function (){
+    let context = this;// 修改事件的指向(给谁绑定的事件window/button/input?)
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function(){
+      fn.apply(context, args);
+    }, delay)
+  }
+}
+// 测试
+function test(parmas) {
+  console.log(11); // 11
+  console.log(this);// window
+  console.log(parmas);// 12321
+}
+window.onresize = debounce1(test, 1000, 12321);
+```
+
+
+## 8. 😺手写节流?
+```javascript
+// 方式一 new Date 实现
+function throttle(fn, delay, ...args) {
+  let pre = 0;
+  return function(){
+    let context = this;
+    let now = new Date();
+    if(now - pre > delay){
+      fn.apply(context, args);
+      pre = now;
+    }
+  }
+}
+// 方式二 setTimeout 实现
+function throttle(fn, delay, ..args){
+  let timer;
+  return function (){
+    let context = this;
+    if (timer) {// timer 存在说明还在时间间隔内，直接返回
+      return;
+    }
+    timer = setTimeout(()=>{
+      fn.apply(context, args);
+      timer = null;
+    }, delay)
+  }
+}
+```

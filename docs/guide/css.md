@@ -51,3 +51,22 @@ description: CSS学习
   <div class="son"></div>
 </div>
 ```
+
+## 如何用`css`缩短两个`span`的距离
+- 两个`span`元素之间有间距的原因：<strong>空格</strong>[参考](https://frontend.devrank.cn/traffic-information/7081724984867063822)
+```html
+<!-- 解决方式一 设置 font-size -->
+<div style="font-size: 0;">
+  <span style="font-size: 20px;">hello</span>
+  <span style="font-size: 20px;">world</span>
+</div>
+
+<!-- 方式二 设置间隔 -->
+<span>hello</span>
+<span style="margin-left: -5px;">world</span>
+
+<div style="word-spacing: -40px;">
+  <span>hello</span>
+  <span>world</span>
+</div>
+```
