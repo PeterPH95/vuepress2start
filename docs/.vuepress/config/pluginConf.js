@@ -12,8 +12,8 @@ export default [
 			}
 		},
 	}),
-	// PWA 莫名其妙好了？？
-	pwaPlugin({ skipWaiting: false }),
+	// PWA 莫名其妙好了？？要设置为 true
+	pwaPlugin({ skipWaiting: true }),
 	pwaPopupPlugin({
 		locales: {
 			'/': {
