@@ -70,3 +70,11 @@ description: CSS学习
   <span>world</span>
 </div>
 ```
+
+## 如何给盒子设置两侧阴影
+```CSS
+/* 单独给两边偏移量赋值 */
+div {
+  box-shadow: 10px 0 10px -4px rgb(26, 26, 26), -10px 0 10px -4px rgb(26, 26, 26);
+}
+```

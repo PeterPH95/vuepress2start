@@ -42,6 +42,12 @@ nrm ls
 
 nrm use taobao
 ```
+
+### npm `package.json`初始化
+```bash
+npm init -y
+```
+
 ### yarn
 
 ``` bash

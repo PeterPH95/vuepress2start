@@ -193,3 +193,33 @@ var o2 = {
 }
 o2.sayHi();
 ```
+
+## 动态加载`javascript`脚本
+- [参考](https://juejin.cn/post/6844903567929638920)
+```javascript
+// 获取 Dom
+var HEAD = document.getElementsByTagName('head')[0] || document.documentElement
+var src = 'http://xxxxxx.com'
+var script = document.createElement('script')
+script.setAttribute('type','text/javascript')
+
+// chrome成功回调
+script.onload = function() {
+  console.log('加载成功!')
+}
+// 失败回调
+script.onerror = function() {
+  console.log('加载失败!')
+}
+
+// IE 的写法
+// script.onreadystatechange = function() {
+//     if(this.readyState === 'loaded' || this.readyState === 'complete') {
+//         console.log('加载成功！')
+//     }
+// }
+
+// 插入文档
+script.setAttribute('src', src)
+HEAD.appendChild(script)
+```

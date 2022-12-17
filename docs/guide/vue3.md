@@ -97,3 +97,11 @@ export default {
   }
   ``` 
 - 问题二：`@`别名的方式模块无法识别
+
+### `ref`获取`Dom`
+```js
+<div ref="dom">hello</div>
+
+const dom = ref<HTMLDivElement>()
+console.log(dom.value?.innerText)
+```
