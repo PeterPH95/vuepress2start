@@ -10,7 +10,7 @@ title: Vue3学习笔记
 - `reactive`：响应式，在`get`中调用`tracker`，在`set`中调用`trigger`，实现视图更新
 - `effect`：副作用函数，接收渲染函数
 - `tracker`：依赖收集，接收`effect`
-  - ![数据结构](./assets/tracker.png) 
+  ![数据结构](./assets/tracker.png) 
 - `trigger`：依赖更新，调用`tracker`收集的`effect`集合
 
 
