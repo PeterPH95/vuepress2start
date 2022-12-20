@@ -4,11 +4,141 @@ title: Vue3学习笔记
 
 # Vue3 学习笔记
 
+## `Vue3`响应式原理手动实现
+
+### 涉及函数
+- `reactive`：响应式，在`get`中调用`tracker`，在`set`中调用`trigger`，实现视图更新
+- `effect`：副作用函数，接收渲染函数
+- `tracker`：依赖收集，接收`effect`
+  - ![数据结构](./assets/tracker.png) 
+- `trigger`：依赖更新，调用`tracker`收集的`effect`集合
+
+
+### `reactive`
+- 实现响应式的基础，内部通过`ES6`的新特性`Proxy`来实现数据劫持
+- 相比于`Vue2`中的`Object.defineProperty`方式的优点：
+  - 可以监测对象属性的添加和删除
+  - 可以检测通过下标修改数组
+
+```js
+// reactive.js
+import { traker, trigger } from "./effect.js";
+
+const isObject = (target) => target !== null && typeof target == "object";
+export const reactive = (target) => {
+  return new Proxy(target, {
+    get(target, key, receiver) {
+      let res = Reflect.get(target, key, receiver);
+      traker(target, key);
+      // 如果值为对象，递归调用
+      if (isObject(res)) {
+        return reactive(res);
+      }
+      return res;
+    },
+    set(target, key, newValue, receiver) {
+      let res = Reflect.set(target, key, newValue, receiver);
+      // 触发更新
+      trigger(target, key);
+      return res;
+    },
+  });
+};
+```
+
+### `effect`、`tracker`、`trigger`在一个`js`文件中
+- `effect`：模板更新函数，接收一个回调函数（该回调函数操作实际的`DOM`，渲染页面）
+- `tracker`：通过对象(`target`)和键(`key`)，收集该对象对应键的依赖函数`effect`
+- `trigger`：当对象(`target`)的键(`key`)对应的属性改变时，调用`tracker`中收集的该对象(`target`)中对应键(`key`)的依赖函数
+
+```js
+// effect.js
+/**
+ * @activeEffect 闭包变量保存渲染函数
+ * @fn 渲染函数
+ * @return void
+ */
+let activeEffect;
+export const effect = (fn) => {
+  const _effect = function () {
+    activeEffect = _effect;
+    fn();
+  };
+  _effect();
+};
+
+/* tracker */
+/**
+ * @description 收集 activeEffect
+ * @target 被 track 的对象
+ * @key 被 track 对象的 key
+ */ 
+const targetMap = new WeakMap();
+export const traker = (target, key) => {
+  let depsMap = targetMap.get(target);
+  if (!depsMap) {
+    depsMap = new Map();
+    targetMap.set(target, depsMap);
+  }
+  let deps = depsMap.get(key);
+  if (!deps) {
+    deps = new Set();
+    depsMap.set(key, deps);
+  }
+  // 关键：收集依赖
+  deps.add(activeEffect);
+};
+
+/* trigger */
+/**
+ * @description 触发 effect
+ */ 
+export const trigger = (target, key) => {
+  const depsMap = targetMap.get(target);
+  const deps = depsMap.get(key);
+  deps.forEach((effect) => effect());
+};
+```
+
+### `HTML`部分
+```html
+<div id="app"></div>
+<script type="module">
+  import { reactive } from "./reactive.js";
+  import { effect } from "./effect.js";
+
+  const user = reactive({
+    name: 'Peter',
+    age: 22,
+    a: {//测试深层嵌套
+      b: {
+        c: 1
+      }
+    }
+  })
+
+  // 传入渲染函数
+  effect(
+    () => document.querySelector("#app").innerText = `${user.name} - ${user.age} - ${user.a.b.c}`;
+  )
+
+  // 测试响应式原理
+  setTimeout(() => {
+    user.name = 'Jhon';
+    setTimeout(() => {
+      user.a.b.c = 12590;
+    }, 1500);
+  }, 1500)
+
+</script>
+```
+
+
 ## `Vue3`相对于`Vue2`的改变
 
 ## `watch`
 
-### `Vue3`竟然无法watch`oldValue`?[参考](https://www.bilibili.com/video/BV1Zy4y1K7SH?p=152&spm_id_from=pageDriver&vd_source=3222fe640ca9017c65847877e892e557)
+### `Vue3`无法watch`oldValue`?[参考](https://www.bilibili.com/video/BV1Zy4y1K7SH?p=152&spm_id_from=pageDriver&vd_source=3222fe640ca9017c65847877e892e557)
 
 ```js
 setup(){
