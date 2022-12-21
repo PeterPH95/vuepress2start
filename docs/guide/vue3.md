@@ -7,7 +7,7 @@ title: Vue3学习笔记
 ## `Vue3`响应式原理手动实现
 
 > 底层原理图：
-![原理图](assets/vue3.png)
+![原理图](./assets/vue3.png)
 
 ### 涉及函数
 - `reactive`：响应式，在`get`中调用`tracker`，在`set`中调用`trigger`，实现视图更新
