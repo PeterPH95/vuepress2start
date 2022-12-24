@@ -223,3 +223,192 @@ script.onerror = function() {
 script.setAttribute('src', src)
 HEAD.appendChild(script)
 ```
+
+## call()方法的使用？
+
+```javascript
+/* call用来绑定this的指向 */
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  //当构造器未使用 new 时,可以当普通函数看待,下面的效果其实是 this.Product(name, price)
+  //绑定了Product()内部 this 的指向 Food ---> Food.Product(name, price)
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+
+function Toy(name, price) {
+  Product.call(this, name, price);
+  this.category = 'toy';
+}
+
+var cheese = new Food('feta', 5);
+var fun = new Toy('robot', 40);
+```
+
+## null+1 和 undefined+1 的结果？
+
+```js
+null + 1 ----> 1
+undefined + 1 ----> NaN	
+```
+
+## JS事件绑定的三种方式？
+
+> 1. 使用内联
+>
+> 2. 使用`.onclick`的方式
+>
+> 3. 使用事件监听`addEventListener(参数1，参数1，参数3)`
+>
+>    参数1：事件类型(不需要添加上on)
+>
+>    参数2：事件函数
+>
+>    参数3：是否捕获（布尔值，默认false），true-->捕获方式(外层到内层)，false-->冒泡方式(内-->外)
+
+**阻止事件冒泡**：
+
+> 1. event.stopPropagation()：可以阻止事件冒泡，阻止触发父级元素的绑定事件
+>
+> 2. 事件委托：将元素的绑定事件写起其父元素上，防止事件冒泡
+>
+>    ​	> a. 可以大量节省内存占用，减少事件注册，比如在ul上代理所有li的click事件。
+>
+> ​		   > b. 可以实现当新增子对象时无需再次对其绑定（动态绑定事件）
+>
+> ```javascript
+> // 事件委托具体实现
+> <ul id="list">
+>   <li>item 1</li>
+>   <li>item 2</li>
+>   <li>item 3</li>
+>   ......
+>   <li>item n</li>
+> </ul>
+> 
+> var ul = document.getElementById("ul");
+>     ul.onclick = function (event) {
+>         event = event || window.event;
+>         var target = event.target;
+>         // 获取目标元素
+>         if (target.nodeName == 'LI') {
+>             alert(target.innerHTML);
+>         }
+>     }
+>     // 为按钮绑定点击事件
+>     var btn = document.getElementById('btn');
+>     btn.onclick = function () {
+>         var li = document.createElement('li');
+>         // 新增li的内容为ul当前子元素的个数
+>         li.textContent = ul.children.length;
+>         ul.appendChild(li);
+>     }
+> ```
+
+**事件绑定**：
+
+```html
+/* 1. 内联 */
+<input type="button" value="按钮" onclick="alert(1);">
+
+<input type="button" value="按钮">
+<script type="text/javascript">
+	var bt = document.getElementsBytagname("input")[0];
+    /* 2. onclick */
+	bt.onclick = function(){
+		alert(2)
+	}
+    /* 3. addEventListener */
+    bt.addEventListener('click', function(event){
+        event.stopPropagation();//阻止冒泡
+        alert(3)
+    }, )
+</script>
+
+```
+
+## JavaScript 中的变量声明提升？
+
+> Var声明的变量声明提升、函数声明提升、let和const变量不提升[[参考](https://es6.ruanyifeng.com/#docs/let)]
+
+```
+> 变量提升是指JS的变量和函数声明会在代码编译期，提升到代码的最前面。 
+> 变量提升成立的前提是使用 Var 关键字进行声明的变量，并且变量提升的时候只有声明被提升，赋值并不会被提升，同时函数的声明提升会比变量的提升优先。 
+> 变量提升的结果，可以在变量初始化之前访问该变量，返回的是undefined。在函数声明前可以调用该函数。 
+
+加分回答 
+> 使用let和const声明的变量是创建提升，形成**暂时性死区**，在初始化之前访问let和const创建的变量会报错。
+```
+
+## for in 和 for of 的区别？
+
+```js
+> `for in`遍历的是数组的索引（即键名），而`for of`遍历的是数组元素值
+
+> `for in`总是得到对象的`key`或数组、字符串的下标
+            var arr = [1,2,3]
+            for (let index in arr) {
+              let res = index + 1
+              console.log(res)
+            }
+            //01 11 21
+> `for of`总是得到对象的`value`或数组、字符串的值
+			var arr = [1,2,3]
+            arr.a = 123
+            Array.prototype.a = 123
+
+            for (let value of arr) {
+              console.log(value)
+            }
+            //1 2 3
+```
+
+[《for in 和 for of 的区别》](https://juejin.cn/post/6916058482231754765)
+
+## Object.create()、new Object() 和 {} 的区别？
+
+> 字面量和`new`关键字创建的对象是`Object`的实例，原型指向`Object.prototype`，继承内置对象`Object`
+>
+> `Object.create(arg, pro)`创建的对象的原型取决于`arg`，`arg`为`null`，新对象是空对象，没有原型，不继承任何对象；`arg`为指定对象，新对象的原型指向指定对象，继承指定对象。创建一个没有原型的对象：`Object.create(null)`
+>
+> [参考](https://juejin.cn/post/6844903917835436045)
+
+```js
+//{}
+var objA = {};
+objA.name = 'a';
+objA.sayName = function() {
+    console.log(`My name is ${this.name} !`);
+}
+
+console.log(objA.__proto__ === Object.prototype); // true
+console.log(objA instanceof Object); // true
+
+//new Object()
+var objB = new Object();
+// var objB = Object();
+objB.name = 'b';
+objB.sayName = function() {
+    console.log(`My name is ${this.name} !`);
+}
+
+console.log(objB.__proto__ === Object.prototype); // true
+console.log(objB instanceof Object); // true
+
+//Object.create()
+const person = {
+  isHuman: false,
+  printIntroduction: function () {
+    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+  }
+};
+const me = Object.create(person); // me.__proto__ === person
+me.name = "Matthew"; // name属性被设置在新对象me上，而不是现有对象person上
+me.isHuman = true; // 继承的属性可以被重写
+me.printIntroduction(); // My name is Matthew. Am I human? true
+
+```
