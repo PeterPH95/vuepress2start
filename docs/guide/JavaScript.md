@@ -114,6 +114,7 @@ undefined == undefined //true
 ```js
 /**
  * []重写了toString()方法，默认调用join()，{}未重写toString()返回数据类型
+ * valueOf() 返回值为 this 值，将其转换为一个对象
  */
 console.log([].valueOf(), [].toString()) // [] ,  ''
 console.log({}.valueOf(), {}.toString()) // {}, [object Object] 

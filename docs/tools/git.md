@@ -54,7 +54,7 @@ git push
 - chore：    构建过程或辅助工具的变动
 :::
 
-### `checkout` 恢复代码
+### `checkout` 切换分支
 ``` bash
 // 从最后一次提交的代码中恢复 xxx.md 文件
 git checkout HEAD xxx.md
@@ -62,6 +62,24 @@ git checkout HEAD xxx.md
 git log
 // 退出日志
 q // 按住
+```
+
+### 合并分支
+- 假设线上代码的分支是master，本地修复bug的分支为fix，上线时下列哪些git操作是正确的
+- merge 合并（拉代码或者push代码都可使用）
+- rebase 合并（拉公共分支最新代码的时候使用）
+```bash
+// 方式一
+git checkout master
+git merge fix
+git push origin master
+
+// 方式二
+git checkout fix
+git rebase master
+git checkout master
+git merge fix
+git push origin master
 ```
 
 ### `git` 查看账户，修改账户，多终端配置

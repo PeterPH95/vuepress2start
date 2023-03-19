@@ -34,6 +34,10 @@ export default [
       { text: '数据库', children: [
           { text: 'SQL', link: '/tools/sql.md' }
         ]
+      },
+      { text: '计算机基础', children: [
+          { text: 'More', link: '/tools/more.md' }
+        ]
       }
     ],
   },
