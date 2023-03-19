@@ -6,8 +6,8 @@ title: '使用导航'
 
 ## 项目和面试
 - [面试](https://juejin.cn/post/7017732278509453348#heading-0)
-- [项目](https://www.yuque.com/u12273263/sanmu/as5vtg)
 - [面试和进阶](https://www.bilibili.com/read/cv22469692?spm_id_from=444.41.list.card_opus.click)
+- [后台管理项目链接](https://peterph95.github.io/vue3-manage-system/#/login)
 
 ## Features
 
