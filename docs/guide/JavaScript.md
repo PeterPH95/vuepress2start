@@ -138,6 +138,7 @@ Array.isArray([]) // true
 
 
 ## 原型链继承问题
+[图解](assets/property.jpg)
 ```js
 function F(){};
 Object.prototype.a = function(){console.log('a')};
@@ -160,6 +161,7 @@ Function.prototype.__proto__ === [Function.prototype 构造函数的].prototype 
 综上：f 能取到 a 取不到 b; F 能取到 a,b
 */
 ```
+
 
 
 ## 连等 var a=b=1 声明问题
@@ -200,25 +202,28 @@ o2.sayHi();
 ```javascript
 // 获取 Dom
 var HEAD = document.getElementsByTagName('head')[0] || document.documentElement
-var src = 'http://xxxxxx.com'
+var src = 'http://xxxxxx.com/resource.js'
 var script = document.createElement('script')
 script.setAttribute('type','text/javascript')
+// script.type = “text/javascript”;
 
-// chrome成功回调
+// chrome成功回调，非IE浏览器使用
 script.onload = function() {
   console.log('加载成功!')
-}
-// 失败回调
-script.onerror = function() {
-  console.log('加载失败!')
 }
 
 // IE 的写法
 // script.onreadystatechange = function() {
 //     if(this.readyState === 'loaded' || this.readyState === 'complete') {
+//     if(/^(loaded|complete)$/.test(this.readyState)){
 //         console.log('加载成功！')
 //     }
 // }
+
+// 失败回调
+script.onerror = function() {
+  console.log('加载失败!')
+}
 
 // 插入文档
 script.setAttribute('src', src)
@@ -260,55 +265,47 @@ undefined + 1 ----> NaN
 ## JS事件绑定的三种方式？
 
 > 1. 使用内联
->
 > 2. 使用`.onclick`的方式
->
 > 3. 使用事件监听`addEventListener(参数1，参数1，参数3)`
->
 >    参数1：事件类型(不需要添加上on)
->
 >    参数2：事件函数
->
 >    参数3：是否捕获（布尔值，默认false），true-->捕获方式(外层到内层)，false-->冒泡方式(内-->外)
 
 **阻止事件冒泡**：
 
 > 1. event.stopPropagation()：可以阻止事件冒泡，阻止触发父级元素的绑定事件
->
 > 2. 事件委托：将元素的绑定事件写起其父元素上，防止事件冒泡
->
 >    ​	> a. 可以大量节省内存占用，减少事件注册，比如在ul上代理所有li的click事件。
->
-> ​		   > b. 可以实现当新增子对象时无需再次对其绑定（动态绑定事件）
->
-> ```javascript
-> // 事件委托具体实现
-> <ul id="list">
->   <li>item 1</li>
->   <li>item 2</li>
->   <li>item 3</li>
->   ......
->   <li>item n</li>
-> </ul>
-> 
-> var ul = document.getElementById("ul");
->     ul.onclick = function (event) {
->         event = event || window.event;
->         var target = event.target;
->         // 获取目标元素
->         if (target.nodeName == 'LI') {
->             alert(target.innerHTML);
->         }
->     }
->     // 为按钮绑定点击事件
->     var btn = document.getElementById('btn');
->     btn.onclick = function () {
->         var li = document.createElement('li');
->         // 新增li的内容为ul当前子元素的个数
->         li.textContent = ul.children.length;
->         ul.appendChild(li);
->     }
-> ```
+> ​		  > b. 可以实现当新增子对象时无需再次对其绑定（动态绑定事件）
+
+ ```javascript
+ // 事件委托具体实现
+ <ul id="list">
+   <li>item 1</li>
+   <li>item 2</li>
+   <li>item 3</li>
+   ......
+   <li>item n</li>
+ </ul>
+ 
+ var ul = document.getElementById("ul");
+     ul.onclick = function (event) {
+         event = event || window.event;
+         var target = event.target;
+         // 获取目标元素
+         if (target.nodeName == 'LI') {
+             alert(target.innerHTML);
+         }
+     }
+     // 为按钮绑定点击事件
+     var btn = document.getElementById('btn');
+     btn.onclick = function () {
+         var li = document.createElement('li');
+         // 新增li的内容为ul当前子元素的个数
+         li.textContent = ul.children.length;
+         ul.appendChild(li);
+     }
+ ```
 
 **事件绑定**：
 
@@ -372,10 +369,10 @@ undefined + 1 ----> NaN
 
 ## Object.create()、new Object() 和 {} 的区别？
 
-> 字面量和`new`关键字创建的对象是`Object`的实例，原型指向`Object.prototype`，继承内置对象`Object`
->
-> `Object.create(arg, pro)`创建的对象的原型取决于`arg`，`arg`为`null`，新对象是空对象，没有原型，不继承任何对象；`arg`为指定对象，新对象的原型指向指定对象，继承指定对象。创建一个没有原型的对象：`Object.create(null)`
->
+- 字面量和`new`关键字创建的对象是`Object`的实例，原型指向`Object.prototype`，继承内置对象`Object`
+- `Object.create(arg, pro)`创建的对象的原型取决于`arg`，`arg`为`null`，新对象是空对象，没有原型，不继承任何对象
+  - `arg`为指定对象，新对象的原型指向指定对象，继承指定对象
+  - 创建一个没有原型的对象：`Object.create(null)`
 > [参考](https://juejin.cn/post/6844903917835436045)
 
 ```js

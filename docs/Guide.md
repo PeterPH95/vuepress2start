@@ -9,7 +9,7 @@ title: '使用导航'
 - [面试和进阶](https://www.bilibili.com/read/cv22469692?spm_id_from=444.41.list.card_opus.click)
 - [后台管理项目链接](https://peterph95.github.io/vue3-manage-system/#/login)
 
-## Features
+## 网站明细
 
 **算法**
 * [算法](algorithm/algorithm.md)

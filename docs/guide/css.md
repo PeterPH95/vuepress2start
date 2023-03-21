@@ -29,7 +29,7 @@ description: CSS学习
 - overflow的值不能为visible
 - display的值为table-cell, table-caption, inline-block中的任何一个
 - position的值不为relative和static
-
+[图解](assets/BFC.PNG)
 
 ## 父子盒子的宽度计算
 - 当子盒子不设置width，或者设置width为auto时，子盒子的宽度=父盒子宽度-子盒子左右margin值-子盒子左右padding值
@@ -78,3 +78,12 @@ div {
   box-shadow: 10px 0 10px -4px rgb(26, 26, 26), -10px 0 10px -4px rgb(26, 26, 26);
 }
 ```
+
+## HTML5
+[图解](assets/html5.PNG)
+
+## `div`的位置
+[图解](assets/div.jpeg)
+
+## 清除浮动
+[图解](assets/clear_float.PNG)

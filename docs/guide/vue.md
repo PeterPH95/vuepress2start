@@ -4,6 +4,9 @@ title: Vue2项目笔记
 
 # Vue2 项目遇到的问题
 
+
+## `vue2`生命周期
+[图解](assets/vue2_lifetime.png)
 ## @click.native.prevent
 - 给vue的组件绑定事件时候，若不加上`native`关键字 ，会被`vue`判断为自定义事件（`code1`）,
 
@@ -143,9 +146,6 @@ export const getAddr = (params) => {
 :::
 
 
-## 事件总线和`vuex`的区别？
-
-
 ## 父组件给子组件传值，父组件更新数据，子组件数据不更新
 - 原因：子组件只会在第一次初始化时拿到值并赋值，(注意：直接对象赋值则不受影响，若是非对象属性，则会发生上述情况)，当父组件传给子组件的值改变时，并没有重新给子组件中的变量赋值。
 - 解决方法一：使用`computed`或者`watch`来检测传入的`props`的改变
@@ -192,3 +192,38 @@ export default {
 };
 </script>
 ```
+
+## vue中组件通信的方式
+
+- `props`与`emit`
+- 使用`ref`与`$parent`/`$children` [vue2](https://v2.cn.vuejs.org/v2/api/#parent)
+- 事件总线`EventBus`与`emit`/`on`
+- `$attrs`/`$listeners` [参考](https://www.cnblogs.com/vickylinj/p/13376391.html) [vue2](https://v2.cn.vuejs.org/v2/api/#vm-attrs)
+  - `$attrs`接收除了props声明外的所有绑定属性（class、style除外）
+  - `$listeners`接收除了带有.native事件修饰符的所有事件监听器
+- `Provide`和`inject`
+- `Vuex`
+
+
+## 事件总线和`vuex`的区别？[参考](https://blog.csdn.net/shadowfall/article/details/112005980)
+- 相同点
+> 都能实现任意组件（父-子，爷-孙，兄弟组件）间的通信
+> 本质上都是一个方法，都是在vue这个实例上去实现的
+```js
+ /*--------事件总线-----------*/
+
+// 事件总线绑定事件
+this.$bus.$on('handleAdd',handleAdd)
+// 事件总线触发事件
+this.$bus.$emit('handleAdd',this.count)
+ 
+/*--------状态管理-----------*/
+// 获取状态
+this.$store.state.count
+// 修改状态
+this.$store.dispatch('increment',this.count)
+this.$store.commit('INCREMENT',this.count)
+```
+
+- 不同点[参考](https://blog.csdn.net/shadowfall/article/details/112005980)
+> bus利用事件抛发(发布订阅)的原理进行传递数据而vuex通过数据劫持

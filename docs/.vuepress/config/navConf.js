@@ -2,6 +2,9 @@
 export default [
   { text: '首页', link: '/' },
   { text: '导航', link: '/Guide.md' },
+  { text: '性能优化', children: [
+    {text: '浏览器', link: '/performance/browser.md'}
+  ] },
   { text: '算法', children: [
     {text: '算法', link: '/algorithm/algorithm.md'},
     {text: 'JS手写', link: '/algorithm/JS.md'}
