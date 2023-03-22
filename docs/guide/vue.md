@@ -4,24 +4,6 @@ title: Vue2项目笔记
 
 # Vue2 项目遇到的问题
 
-
-## `vue2`生命周期
-[图解](assets/vue2_lifetime.png)
-## @click.native.prevent
-- 给vue的组件绑定事件时候，若不加上`native`关键字 ，会被`vue`判断为自定义事件（`code1`）,
-
-- 如果监听根元素的原生事件，需使用 .native 修饰符(element-ui(el-button)组件中碰到)
-
-```vue
-<template>
-  <!--1. 子组件点击鼠标，不会触发show函数 -->
-  <Student @click="show"/>
-  <!-- 子组件点击鼠标可以触发show函数 -->
-  <Student @click.native="show"/>
-</template>
-```
-
-
 ### `Vue2` 中设置别名 `@` 的方式
 ```js{6}
 // src/build/webpack.base.conf.js 中进行配置
@@ -192,6 +174,26 @@ export default {
 };
 </script>
 ```
+
+<hr/>
+<hr/>
+
+## `vue2`生命周期
+[图解](assets/vue2_lifetime.png)
+## @click.native.prevent
+- 给vue的组件绑定事件时候，若不加上`native`关键字 ，会被`vue`判断为自定义事件（`code1`）,
+
+- 如果监听根元素的原生事件，需使用 .native 修饰符(element-ui(el-button)组件中碰到)
+
+```vue
+<template>
+  <!--1. 子组件点击鼠标，不会触发show函数 -->
+  <Student @click="show"/>
+  <!-- 子组件点击鼠标可以触发show函数 -->
+  <Student @click.native="show"/>
+</template>
+```
+
 
 ## vue中组件通信的方式
 
