@@ -17,7 +17,7 @@ title: 浏览器
 >
 > 第四步和第五步是最耗时的部分，这两步合起来，就是我们通常所说的渲染。
 
-![图解](./assets/load_render.PNG)
+![图解](./assets/load_render.png)
 
 
 ## CSS加载会造成阻塞吗？为什么，做过实验吗？怎么证明？
@@ -82,7 +82,7 @@ title: 浏览器
 <script src='xxx' async></script>
 <script src='xxx' defer></script>
 ```
-![图解](./assets/async_defer.PNG)
+![图解](./assets/async_defer.png)
 > 1. 既没有defer也没有async属性，则浏览器遇到该script标签时，会立即加载并执行指定的脚本。执行完毕后，才继续解析后面的标签。
 > 2. 有async 属性，浏览器遇到该script标签时，加载脚本的过程与解析后面标签的过程同时进行。加载完毕后，单独执行该脚本。
 > 3. 有defer属性，浏览器遇到该script标签时，加载脚本的过程与解析后面标签的过程同时进行。但是执行脚本的过程，在解析完所有元素之后才执行。可以这样理解：defer本身就有推迟的意思，在加载完脚本后，将执行过程推迟到最后。
