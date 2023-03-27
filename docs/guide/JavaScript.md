@@ -148,7 +148,7 @@ Array.isArray([]) // true
 
 
 ## 原型链继承问题
-[图解](assets/property.jpg)
+![图解](./assets/property.jpg)
 ```js
 function F(){};
 Object.prototype.a = function(){console.log('a')};
