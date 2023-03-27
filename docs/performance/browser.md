@@ -4,6 +4,9 @@ title: 浏览器
 
 # 页面加载与渲染
 
+## 浏览器输入url到页面展示出来的全过程
+- [参考](https://blog.csdn.net/cute_ming/article/details/124364783?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166640878316782248545658%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=166640878316782248545658&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_click~default-2-124364783-null-null.nonecase&amp;utm_term=%E8%BE%93%E5%85%A5url%E5%88%B0%E6%98%BE%E7%A4%BA%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B&amp;spm=1018.2226.3001.4450)
+
 ## 浏览器渲染流程
 > 页面生成的过程：
 > 1.HTML 被 HTML 解析器解析成 DOM 树；

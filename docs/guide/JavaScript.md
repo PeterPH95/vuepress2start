@@ -21,6 +21,7 @@ console.log(foo); //bar
 setTimeout(() => console.log(foo), 500); //baz
 ```
 
+
 ## js 中操作符 `!` `~~` 和 `!!`[参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Logical_NOT#double_not_!!)
 - ! 会将后面的数据先转成布尔值，然后取反；
 - ~~ 利用符号进行的类型转换，转换成数字类型；
@@ -53,6 +54,7 @@ console.log(r) //false
 // | 0 也可以取整,实际就是2进制取或的操作
 1.2 | 0 //1
 ```
+
 
 ## `==` `+` 的隐式类型转换
 - 类型相同
@@ -110,13 +112,21 @@ undefined == undefined //true
 ```
 
 
+## 判断 null==0 和 null>=0 的返回值？
+- 解释一下为什么 第一个是false.第二个是true
+- [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Greater_than_or_equal#%E6%AF%94%E8%BE%83_boolean%E3%80%81null%E3%80%81undefined_%E5%92%8C_nan)[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness#%E9%9D%9E%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89)
+> 1. `null >= 0`，首先会先判断`null > 0`，此时会进行隐式数据类型转换，转为数值类型，`Number(null)`值为0，`0 > 0`为`false`；再判断`0 = 0`结果为`true`
+> 2. 直接判断`null == 0`时不会进行隐式类型转换，直接返回`false`
+> 3. 总结：`null`和`undefined`与出它们自身的其它类型相`==`时返回`false`
+
+
 ## `valueOf()` 和 `toString()`的特殊调用
 ```js
 /**
  * []重写了toString()方法，默认调用join()，{}未重写toString()返回数据类型
  * valueOf() 返回值为 this 值，将其转换为一个对象
  */
-console.log([].valueOf(), [].toString()) // [] ,  ''
+console.log([].valueOf(), [].toString()) // [], ''
 console.log({}.valueOf(), {}.toString()) // {}, [object Object] 
 ```
 
@@ -163,7 +173,6 @@ Function.prototype.__proto__ === [Function.prototype 构造函数的].prototype 
 ```
 
 
-
 ## 连等 var a=b=1 声明问题
 > 语句 var a=b=1 是语句 b = 1 和 var a = b 的简写， b 成为一个全局变量（**没有var前缀**）
 ```js{3-5}
@@ -196,6 +205,7 @@ var o2 = {
 }
 o2.sayHi();
 ```
+
 
 ## 动态加载`javascript`脚本
 - [参考](https://juejin.cn/post/6844903567929638920)
@@ -230,6 +240,7 @@ script.setAttribute('src', src)
 HEAD.appendChild(script)
 ```
 
+
 ## call()方法的使用？
 
 ```javascript
@@ -255,12 +266,14 @@ var cheese = new Food('feta', 5);
 var fun = new Toy('robot', 40);
 ```
 
+
 ## null+1 和 undefined+1 的结果？
 
 ```js
 null + 1 ----> 1
 undefined + 1 ----> NaN	
 ```
+
 
 ## JS事件绑定的三种方式？
 
@@ -329,6 +342,7 @@ undefined + 1 ----> NaN
 
 ```
 
+
 ## JavaScript 中的变量声明提升？
 
 > Var声明的变量声明提升、函数声明提升、let和const变量不提升[[参考](https://es6.ruanyifeng.com/#docs/let)]
@@ -366,6 +380,7 @@ undefined + 1 ----> NaN
 ```
 
 [《for in 和 for of 的区别》](https://juejin.cn/post/6916058482231754765)
+
 
 ## Object.create()、new Object() 和 {} 的区别？
 
