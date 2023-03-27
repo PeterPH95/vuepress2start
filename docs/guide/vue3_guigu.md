@@ -89,8 +89,8 @@ npm run serve
   - 真正的按需编译，不再等待整个应用编译完成。
 - 传统构建 与` vite`构建对比图
 
-[bundler](assets/bundler.png)
-[esm](assets/esm.png)
+![bundler](./assets/bundler.png)
+![esm](./assets/esm_based_dev.png)
 
 ``` bash
 ## 创建工程

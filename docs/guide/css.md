@@ -29,7 +29,7 @@ description: CSS学习
 - overflow的值不能为visible
 - display的值为table-cell, table-caption, inline-block中的任何一个
 - position的值不为relative和static
-![图解](./assets/BFC.png)
+![BFC](./assets/bfc.png)
 
 ## 父子盒子的宽度计算
 - 当子盒子不设置width，或者设置width为auto时，子盒子的宽度=父盒子宽度-子盒子左右margin值-子盒子左右padding值

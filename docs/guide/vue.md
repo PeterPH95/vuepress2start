@@ -232,7 +232,7 @@ this.$store.commit('INCREMENT',this.count)
 
 ## `Vue2`底层
 ### `Vue2`生命周期
-- ![图解](./assets/vue2_lifetime.png)
+![图解](./assets/vue2_lifetime.png)
 
 ### `Vue2`双向绑定原理，代码复现
 - [参考](https://www.bilibili.com/video/BV1934y1a7MN)
