@@ -237,7 +237,40 @@ this.$store.commit('INCREMENT',this.count)
 ### `Vue2`双向绑定原理，代码复现
 - [参考](https://www.bilibili.com/video/BV1934y1a7MN)
 ![原理图](./assets/Vue2双向绑定原理.png)
-- 代码
+- `html`部分
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div id="app">
+    <span>打工人: {{name}}</span>
+    <input type="text" v-model="name" />
+    <span>工资：{{more.salary}}</span>
+    <input type="text" v-model="more.salary" />
+    <h6>
+      感谢蛋老师的知识分析
+      <a href="https://www.bilibili.com/video/BV1934y1a7MN" target="_blank">原视频</a>
+    </h6>
+  </div>
+</body>
+</html>
+
+<script src="./vue.js"></script>
+
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      name: '西维',
+      more: {
+        salary: 1000
+      }
+    }
+  })
+  console.log(vm)
+</script>
+```
+- 实现代码部分
 ```js
 // Vue2 双向绑定原理
 
