@@ -6,8 +6,12 @@ description: CSS学习
 
 # CSS学习笔记
 
+## CSS选择器优先级
+
+> ❗❗ !important > 内联样式 > id选择器 > 类选择器（属性选择器([type="radio"])、伪类选择器（p:first-child{}））> 元素选择器(伪元素::before) > 通配符(*)
 
 ## CSS 元素百分比参照问题
+
 - 参照父元素**宽度**的元素: padding(-top) margin(-top) width text-indent(高度可能被子元素撑开，出现一个无限循环)
 - 参照父元素**高度**的元素: height
 - 参照父元素属性: font-size line-height
@@ -26,10 +30,14 @@ description: CSS学习
 
 ## 形成 BFC 的方式
 - float的值不能为none(浮动元素内部子元素的主要受该浮动元素影响，两个浮动元素之间是互不影响的)
+
 - overflow的值不能为visible
+
 - display的值为table-cell, table-caption, inline-block中的任何一个
+
 - position的值不为relative和static
-![BFC](./assets/bfc.png)
+
+  ![BFC](./assets/bfc.png)
 
 ## 父子盒子的宽度计算
 - 当子盒子不设置width，或者设置width为auto时，子盒子的宽度=父盒子宽度-子盒子左右margin值-子盒子左右padding值
@@ -83,6 +91,11 @@ div {
 ![HTML5](./assets/html5.png)
 
 ## `div`的位置
+
+> ❗❗clientWidth = content + padding
+>
+> ❗❗offsetWidth = content + padding + border
+
 ![div高度](./assets/div.jpeg)
 
 ## 清除浮动

@@ -103,16 +103,33 @@ console.log([]==![])
 '' == 0
 //step4:字符串转成数字
 0 == 0 //true
-
-//null、NaN、undefined
-console.log(NaN==NaN) //false
-console.log(undefined==null) //true
-console.log(null==null) //true
-undefined == undefined //true
 ```
 
+## null、undefined和NaN
+
+```js
+//null、NaN、undefined
+NaN==NaN //false
+
+undefined==null //true
+null===null //true
+null==null //true
+undefined === undefined //true
+undefined == undefined //true
+
+typeof null === 'object'//true
+null instanceof Object //false
+```
+
+## null+1 和 undefined+1 的结果？
+
+```
+null + 1 ----> 1
+undefined + 1 ----> NaN	
+```
 
 ## 判断 null==0 和 null>=0 的返回值？
+
 - 解释一下为什么 第一个是false.第二个是true
 - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Greater_than_or_equal#%E6%AF%94%E8%BE%83_boolean%E3%80%81null%E3%80%81undefined_%E5%92%8C_nan)[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness#%E9%9D%9E%E4%B8%A5%E6%A0%BC%E7%9B%B8%E7%AD%89)
 > 1. `null >= 0`，首先会先判断`null > 0`，此时会进行隐式数据类型转换，转为数值类型，`Number(null)`值为0，`0 > 0`为`false`；再判断`0 = 0`结果为`true`
@@ -187,8 +204,51 @@ console.log(b);//windows全局作用域下找到window.b=1
 console.log(a);//a在fn里面的作用域，外面访问不了，报错
 ```
 
+## 形参和外部变量重名？
+
+```js
+//题1
+var result=0;
+function test(result){
+ result=1;
+}
+test(2);
+
+/* result还是为0，函数test内的result为形参，如果形参改为其它描述，外部的result就会被改变 */
+```
+
+## 立即执行函数具有独立的作用域
+
+```js
+//题2
+var name = 'World!';
+(function () {
+    if (typeof name === 'undefined') {
+        var name = 'Han Meimei';
+        console.log('Welcome ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})(); 
+// 结果输出 'Welcome Han Meimei'
+
+// 解析：
+var name = 'World!';
+(function () {
+    var name;//变量声明提升
+    if (typeof name === 'undefined') {
+        name = 'Han Meimei';
+        console.log('Welcome ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})(); 
+```
+
+
 
 ## `this` 指向问题?
+
 > - 对于箭头函数：this指向取决于该箭头函数**同级作用域**的this指向，又由于**对象不能形成自己的作用域**，因此其作用域为全局作用域，箭头函数的this初始绑定Window对象
 > - 对于普通函数：this绑定了它的调用者
 ```js
@@ -267,14 +327,6 @@ var fun = new Toy('robot', 40);
 ```
 
 
-## null+1 和 undefined+1 的结果？
-
-```js
-null + 1 ----> 1
-undefined + 1 ----> NaN	
-```
-
-
 ## JS事件绑定的三种方式？
 
 > 1. 使用内联
@@ -342,6 +394,13 @@ undefined + 1 ----> NaN
 
 ```
 
+## `addEventlistener`和正常的`onclick=()=> `的区别
+
+- onclick事件在同一时间只能指向唯一对象（重复绑定事件只会使最后绑定的事件响应） 
+
+- addEventListener给一个事件注册多个listener（重复绑定事件会依次从上到下响应）
+
+  addEventListener第一个参数事件类型，第二个类型即绑定的具体事件，第三个参数默认是false，false是冒泡，true时是捕获；
 
 ## JavaScript 中的变量声明提升？
 

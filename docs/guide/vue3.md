@@ -138,6 +138,14 @@ export const trigger = (target, key) => {
 
 
 ## `Vue3`相对于`Vue2`的改变
+> 1. 响应式原理不同
+  - vue2：对象类型：使用`Object.defineProperty()`实现数据劫持；对于数组类型：重写数组的方法（）
+    - 存在的问题：新增或删除属性不会更新界面，直接通过下标修改数组不更新页面 
+  - vue3：通过`Proxy()`拦截对象属性的变化
+> 2. 生命周期钩子函数不同
+  - `beforeDestroy`改名为 `beforeUnmount`
+  - `destroyed`改名为 `unmounted`
+
 
 ## `watch`
 

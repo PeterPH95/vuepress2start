@@ -195,7 +195,7 @@ export default {
 
 ## `Vue2` 组件通信
 ### vue中组件通信的方式
-
+- [参考](https://mp.weixin.qq.com/s/CMolemxgo74B0bjk1t3-Lw)
 - `props`与`emit`
 - 使用`ref`与`$parent`/`$children` [vue2](https://v2.cn.vuejs.org/v2/api/#parent)
 - 事件总线`EventBus`与`emit`/`on`
@@ -230,14 +230,19 @@ this.$store.commit('INCREMENT',this.count)
 > bus利用事件抛发(发布订阅)的原理进行传递数据而vuex通过数据劫持
 
 
+### Ajax 请求到底应该放在 created 里还是 mounted 里
+- created 和 mounted 都是同步的，API请求是异步的
+- 建议放在`mounted`中 [参考](https://www.bilibili.com/read/cv14696847)
+
+
 ## `Vue2`底层
 ### `Vue2`生命周期
 ![图解](./assets/vue2_lifetime.png)
 
-### `Vue2`双向绑定原理，代码复现
+### `Vue2`双向绑定原理，代码复现（简约版）
 - [参考](https://www.bilibili.com/video/BV1934y1a7MN)
 ![原理图](./assets/Vue2双向绑定原理.png)
-- `html`部分
+- `html`部分`index.html`
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -270,7 +275,7 @@ this.$store.commit('INCREMENT',this.count)
   console.log(vm)
 </script>
 ```
-- 实现代码部分
+- 实现代码部分`vue.js`
 ```js
 // Vue2 双向绑定原理
 
@@ -317,7 +322,7 @@ function Observer(data_instance) {
   });
 }
 
-//模板解析 —— 替换DOM内容 把vue实例上的数据解析到页面上
+//模板解析 —— 替换DOM内容 把vue实例上的数据解析到页面上，初始化（只执行一次）
 // 接收两个参数 1.vue实例挂载的元素<div id="app"> 2.vue实例
 function Complie(element, vm) {
   vm.$el = document.querySelector(element);
@@ -333,6 +338,7 @@ function Complie(element, vm) {
   function fragment_compile(node) {
     // 使用正则表达式去匹配并替换节点里的{{}}
     const pattern = /\{\{\s*(\S+)\s*\}\}/;
+    // 1. 匹配文本节点
     if (node.nodeType === 3) {
       // 提前保存文本内容 否则文本在被替换一次后 后续的操作都会不生效
       // 打工人: {{name}}  => 打工人：西维 如果不保存后续修改name会匹配不到{{name}} 因为已经被替换
@@ -343,14 +349,18 @@ function Complie(element, vm) {
         const arr = result_regex[1].split("."); // more.salary => ['more', 'salary']
         // 使用reduce归并获取属性对应的值 = vm.$data['more'] => vm.$data['more']['salary']
         const value = arr.reduce((total, current) => total[current], vm.$data);
+        // 下面的这一步已经替换了内容
         node.nodeValue = texts.replace(pattern, value);
+
+
         // 在节点值替换内容时 即模板解析的时候 添加订阅者
-        // 在替换文档碎片内容时告诉订阅者如何更新 即告诉Watcher如何更新自己
+        // 通过闭包的方式获取 node.nodeValue 从而在将来使用 setter 修改属性值时触发视图更新
         new Watcher(vm, result_regex[1], (newVal) => {
           node.nodeValue = texts.replace(pattern, newVal);
         });
       }
     }
+    // 2. 匹配 input 节点
     // 替换绑定了v-model属性的input节点的内容
     if (node.nodeType === 1 && node.nodeName === "INPUT") {
       const attr = Array.from(node.attributes);
@@ -360,9 +370,13 @@ function Complie(element, vm) {
             .split(".")
             .reduce((total, current) => total[current], vm.$data);
           node.value = value;
+
+          // 保证将来使用 setter 修改属性值时触发视图更新
           new Watcher(vm, item.nodeValue, (newVal) => {
             node.value = newVal;
           });
+
+          // 通过绑定事件实现 View -> VM 的更新
           node.addEventListener("input", (e) => {
             // ['more', 'salary']
             const arr1 = item.nodeValue.split(".");
@@ -406,11 +420,13 @@ class Watcher {
   constructor(vm, key, callback) {
     this.vm = vm;
     this.key = key;
-    this.callback = callback;
-    //临时属性 —— 触发getter 把订阅者实例存储到Dependency实例的subscribers里面
+    this.callback = callback;// 记录如何更新文本内容
+    //1. 临时属性 保存一个 Watcher 实例
     Dependency.temp = this;
-    key.split(".").reduce((total, current) => total[current], vm.$data);
-    Dependency.temp = null; // 防止订阅者多次加入到依赖实例数组里
+    //2. 触发 getter 把订阅者实例存储到 Dependency 实例的 subscribers 里面
+    key.split(".").reduce((total, current) => total[current], vm.$data);// 读取属性触发getter --> vm.$data['more']['salary']
+    //3. 置空，防止订阅者多次加入到依赖实例数组里
+    Dependency.temp = null; 
   }
   update() {
     const value = this.key
